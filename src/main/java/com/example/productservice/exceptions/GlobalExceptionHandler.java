@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
         errorDto.setMessage("Failure");
         errorDto.setMessage(productNotFoundException.getMessage());
 
-        ResponseEntity<ErrorDto> responseEntity = new ResponseEntity<>(errorDto, HttpStatus.NOT_FOUND));
+        ResponseEntity<ErrorDto> responseEntity = new ResponseEntity<>(errorDto, HttpStatus.NOT_FOUND);
         return responseEntity;
     }
 }

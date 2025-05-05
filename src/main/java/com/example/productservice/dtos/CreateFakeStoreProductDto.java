@@ -9,7 +9,7 @@ import lombok.Setter;
 public class CreateFakeStoreProductDto {
     private String name;
     private String desc;
-    private String categoty;
+    private String category;
     private double price;
     private String imageUrl;
 }

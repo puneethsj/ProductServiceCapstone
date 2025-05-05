@@ -48,7 +48,7 @@ public class ProductController {
                 createFakeStoreProductDto.getDesc(),
                 createFakeStoreProductDto.getPrice(),
                 createFakeStoreProductDto.getImageUrl(),
-                createFakeStoreProductDto.getCategoty());
+                createFakeStoreProductDto.getCategory());
         ProductResponseDto productResponseDto = ProductResponseDto.from(product);
         return productResponseDto;
     }
