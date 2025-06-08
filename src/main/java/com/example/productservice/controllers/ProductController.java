@@ -6,6 +6,7 @@ import com.example.productservice.dtos.ProductResponseDto;
 import com.example.productservice.exceptions.ProductNotFoundException;
 import com.example.productservice.models.Product;
 import com.example.productservice.services.ProductService;
+import com.example.productservice.utilities.ApplicationUtilities;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +18,22 @@ import java.util.List;
 @RestController
 public class ProductController {
     ProductService productService;
+    ApplicationUtilities applicationUtilities;
 
-    public ProductController(@Qualifier("productDBService") ProductService productService) {
+    public ProductController(@Qualifier("productDBService")
+                             ProductService productService,
+                             ApplicationUtilities applicationUtilities) {
         this.productService = productService;
+        this.applicationUtilities = applicationUtilities;
     }
 
     @GetMapping("/products/{id}")
-    public ProductResponseDto getProductById(@PathVariable long id) throws ProductNotFoundException {
+    public ProductResponseDto getProductById(
+            @PathVariable("id") long id,
+            @RequestHeader("Authorization") String token)
+            throws ProductNotFoundException {
+        applicationUtilities.validateToken(token);
+
         Product product = productService.getProductById(id);
         ProductResponseDto productResponseDto = ProductResponseDto.from(product);
 

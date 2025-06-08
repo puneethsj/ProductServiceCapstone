@@ -40,7 +40,7 @@ class ProductControllerTest {
         dummyProduct.setCategory(dummyCategory);
         when(productService.getProductById(1L)).thenReturn(dummyProduct);
 
-        ProductResponseDto productResponseDto = productController.getProductById(1L);
+        ProductResponseDto productResponseDto = productController.getProductById(1L, "");
 
         assertEquals(1L, productResponseDto.getId());
         assertEquals("name", productResponseDto.getName());
